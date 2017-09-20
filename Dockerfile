@@ -34,7 +34,6 @@ RUN \
 	openssl \
 	p7zip \
 	py3-lxml \
-	py3-pip \
 	python3 \
 	tar \
 	tiff \
@@ -48,14 +47,15 @@ RUN \
 # ensure pip3 is present
  python3 -m ensurepip && \
  rm -r /usr/lib/python*/ensurepip && \
- pip3 install --upgrade pip setuptools && \
- if [ ! -e /usr/bin/pip ]; then ln -s pip3 /usr/bin/pip ; fi && \
- rm -r /root/.cache 
+ if \
+	[ ! -e /usr/bin/pip ]; then \
+	ln -s /usr/bin/pip3 /usr/bin/pip ; fi && \
 
-# add pip packages
-RUN pip3 install --no-cache-dir -U \
-	pip && \
- pip3 install --no-cache-dir -U \
+# install pip packages
+ pip install --no-cache-dir -U \
+	pip \
+	setuptools && \
+ pip install --no-cache-dir -U \
 	configparser \
 	ndg-httpsclient \
 	notify \
