@@ -51,7 +51,7 @@ RUN \
  pip install --no-cache-dir -U \
 	pip \
 	setuptools && \
- pip install --no-cache-dir -U \
+ pip install -U \
 	configparser \
 	ndg-httpsclient \
 	notify \
